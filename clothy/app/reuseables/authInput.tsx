@@ -21,7 +21,7 @@ export default function AuthInput({
       secureTextEntry={secureTextEntry}
       keyboardType={keyboardType}
       autoCapitalize={autoCapitalize}
-      className={`border-b py-3 mb-4 text-base ${
+      className={`border-b py-3 mb-6 text-base ${
         error ? "border-red-500" : "border-gray-300"
       } ${className}`}
     />

@@ -13,3 +13,9 @@ export interface AuthInputProps {
   autoCapitalize?: "none" | "sentences" | "words" | "characters";
   className?: string;
 }
+
+export interface AuthButtonProps {
+  title: string;
+  onPress: () => void;
+  className?: string; // optional to allow extra Tailwind styles
+}

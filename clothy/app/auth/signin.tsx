@@ -28,6 +28,7 @@ export default function LoginScreen() {
     }
 
     Alert.alert("Success", "Logged in successfully!");
+    router.replace("/(tabs)/home");
   };
 
   return (

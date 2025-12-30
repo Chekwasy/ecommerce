@@ -18,7 +18,7 @@ export default function RootLayout() {
 
   return (
     <View className={isDark ? "dark flex-1 font-dm" : "flex-1 font-dm"}>
-      <Stack screenOptions={{ headerShown: false }} />
+      <Stack screenOptions={{ headerShown: false }}></Stack>
     </View>
   );
 }

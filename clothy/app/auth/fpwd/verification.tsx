@@ -14,6 +14,8 @@ export default function VerificationCodeScreen() {
   const [secondsLeft, setSecondsLeft] = useState(RESEND_TIME);
   const [canResend, setCanResend] = useState(false);
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   useEffect(() => {
     if (secondsLeft === 0) {
       setCanResend(true);
@@ -37,6 +39,27 @@ export default function VerificationCodeScreen() {
     setSecondsLeft(RESEND_TIME);
     setCanResend(false);
   };
+
+  useEffect(() => {
+    const submitIfComplete = async () => {
+      if (isSubmitting) return;
+
+      if (code.every((digit) => digit !== "")) {
+        setIsSubmitting(true);
+
+        const otp = code.join("");
+        const isValid = await verifyCode(otp);
+
+        if (isValid) {
+          router.replace("/auth/fpwd/changepwd");
+        } else {
+          setIsSubmitting(false);
+        }
+      }
+    };
+
+    submitIfComplete();
+  }, [code]);
 
   const handleChange = (text: string, index: number) => {
     const cleanedText = text.replace(/\D/g, "");
@@ -76,6 +99,11 @@ export default function VerificationCodeScreen() {
       setCode(newCode);
       inputs.current[index - 1]?.focus();
     }
+  };
+
+  const verifyCode = async (otp: string) => {
+    // 🔹 Replace with real API call
+    return otp.length === 4;
   };
 
   return (
